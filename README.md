@@ -64,6 +64,7 @@ The unit tests are found throughout the project excluding tests in the `__tests_
 
 ```sh
 npm run test:unit
+npm run test:unit -- --watch
 ```
 
 ## Setup
