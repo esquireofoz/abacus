@@ -60,6 +60,8 @@ Pre-commit hooks have been put in place via `husky` which will run the `precommi
 
 ### Testing
 
+#### Unit Testing
+
 **test:unit**
 
 Runs the unit tests with Jest.
@@ -70,6 +72,26 @@ The unit tests are found throughout the project excluding tests in the `__tests_
 npm run test:unit
 npm run test:unit -- --watch
 ```
+
+#### End-to-End Testing
+
+We are using Cypress to handle e2e testing.
+
+**Development**
+
+To test in development, make sure the server is running. Cypress is expecting the server to be running at http://localhost:3000.
+
+```sh
+npm run dev
+```
+
+Next, open the Cypress test runner.
+
+```sh
+npm run cypress:open
+```
+
+From within the runner, select the tests you want to run.
 
 ## Setup
 

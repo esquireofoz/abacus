@@ -7,5 +7,6 @@
 build/
 dist/
 coverage/
+cypress/**/*.js
 node_modules/
 out/
