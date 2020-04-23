@@ -1,3 +1,7 @@
+# Ignore the JavaScript configuration files at the root of the project. They are
+# not handled by the `@typescript-eslint/parser` parser configured for ESLint.
+/*.js
+
 .github/
 .vscode/
 build/
