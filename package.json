@@ -43,7 +43,7 @@
   "lint-staged": {
     "*.*": "prettier --write",
     "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
+    "*.{ts,tsx}": "eslint --fix"
   },
   "scripts": {
     "build": "next build",
@@ -54,8 +54,8 @@
     "lint:css": "stylelint **/*.{css,scss}",
     "lint:css:fix": "stylelint **/*.{css,scss} --fix",
     "format": "prettier --write .",
-    "lint:js": "eslint . --ext .ts,.tsx",
-    "lint:js:fix": "eslint . --ext .ts,.tsx --fix",
+    "lint:ts": "eslint . --ext .ts,.tsx",
+    "lint:ts:fix": "eslint . --ext .ts,.tsx --fix",
     "start": "next start",
     "test:unit": "jest",
     "type-check": "tsc"
