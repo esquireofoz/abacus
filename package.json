@@ -51,7 +51,7 @@
     "cypress:open": "cypress open",
     "dev": "next",
     "format": "prettier --write .",
-    "lint": "npm run lint:js && npm run lint:css",
+    "lint": "npm run lint:ts && npm run lint:css",
     "lint:css": "stylelint **/*.{css,scss}",
     "lint:css:fix": "stylelint **/*.{css,scss} --fix",
     "lint:ts": "eslint . --ext .ts,.tsx",
