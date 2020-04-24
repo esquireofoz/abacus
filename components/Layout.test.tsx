@@ -4,7 +4,7 @@ import React from 'react'
 import Layout from './Layout'
 
 test('renders layout with declared title and children', () => {
-  const { container } = render(<Layout title="Some Title">A child.</Layout>)
+  const { container } = render(<Layout title='Some Title'>A child.</Layout>)
 
   const divElmt = container.firstChild
   if (divElmt) {

@@ -9,9 +9,7 @@ module.exports = {
   },
   preset: 'ts-jest',
   // Adds special extended assertions to Jest, thus simplifying the tests.
-  setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect',
-  ],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress/'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
