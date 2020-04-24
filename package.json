@@ -40,7 +40,7 @@
   "lint-staged": {
     "*.*": "prettier --write",
     "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
+    "*.{ts,tsx}": "eslint --fix"
   },
   "scripts": {
     "build": "next build",
