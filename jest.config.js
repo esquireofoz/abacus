@@ -12,6 +12,7 @@ module.exports = {
   setupFilesAfterEnv: [
     '@testing-library/jest-dom/extend-expect',
   ],
+  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/cypress/'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
   },
