@@ -62,8 +62,6 @@ Pre-commit hooks have been put in place via `husky` which will run the `precommi
 
 #### Unit Testing
 
-**test:unit**
-
 Runs the unit tests with Jest.
 
 The unit tests are found throughout the project excluding tests in the `__tests__` and `e2e` directory. (Tests in those directories are for integration and end-to-end tests.)
