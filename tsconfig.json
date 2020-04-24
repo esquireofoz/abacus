@@ -19,5 +19,5 @@
     "target": "esnext"
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["cypress", "node_modules"]
 }
