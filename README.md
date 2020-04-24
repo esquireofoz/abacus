@@ -93,6 +93,17 @@ npm run cypress:open
 
 From within the runner, select the tests you want to run.
 
+**Testing Production Build Locally**
+
+Make the development server is not running first. That is, need to free up port 3000.
+
+```sh
+npm run build
+npm run start
+```
+
+Open the Cypress test runner if necessary, then run the tests are usual. The tests will run much faster because all the pages have been pre-compiled. In development, a page may not be compiled the first time it is have been navigated to.
+
 ## Setup
 
 ### Testing
