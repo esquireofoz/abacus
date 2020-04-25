@@ -27,6 +27,7 @@ node_modules/
 cypress/fixtures/examples/
 cypress/integration/examples/
 cypress/screenshots/
+cypress/videos/
 
 # TypeScript v1 declaration files
 typings/
