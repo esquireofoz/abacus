@@ -49,6 +49,7 @@
     "build": "next build",
     "precommit": "lint-staged",
     "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
     "dev": "next",
     "format": "prettier --write .",
     "lint": "npm run lint:ts && npm run lint:css",

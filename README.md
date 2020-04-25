@@ -84,13 +84,27 @@ To test in development, make sure the server is running. Cypress is expecting th
 npm run dev
 ```
 
-Next, open the Cypress test runner.
+Next, the Cypress test runner needs to be started. This can be done interactively or not.
+
+**Interactively**
+
+To use the Cypress test runner interactively, you open it with
 
 ```sh
 npm run cypress:open
 ```
 
-From within the runner, select the tests you want to run.
+and from within the runner, select the tests you want to run.
+
+**Non-Interactively**
+
+To use the Cypress test runner non-interactively, you run
+
+```sh
+npm run cypress:run
+```
+
+and sit back and wait.
 
 **Testing Production Build Locally**
 
