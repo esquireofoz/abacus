@@ -7,7 +7,7 @@ import { getExperimentsApiAuth } from '../utils/auth'
 
 import { openAuthPopup } from '../utils/auth'
 
-const debug = debugFactory('pages/index.tsx')
+const debug = debugFactory('abacus:pages/index.tsx')
 
 const IndexPage = React.memo(function IndexPage() {
   debug('IndexPage#render')

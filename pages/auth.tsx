@@ -7,7 +7,7 @@ import Layout from '../components/Layout'
 
 import { replaceWithOAuth } from '../utils/auth'
 
-const debug = debugFactory('pages/auth.tsx')
+const debug = debugFactory('abacus:pages/auth.tsx')
 
 /**
  * The authorization page. It is expected to be opened in a popup window.

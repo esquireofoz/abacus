@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 
 import { acceptMessagesFrom, saveExperimentsApiAuth } from '../utils/auth'
 
-const debug = debugFactory('pages/_app.tsx')
+const debug = debugFactory('abacus:pages/_app.tsx')
 
 interface WindowOpener {
   close: () => void
