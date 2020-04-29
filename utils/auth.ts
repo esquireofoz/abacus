@@ -7,6 +7,8 @@ import qs from 'querystring'
  */
 const resolveClientId = (host: string) => {
   switch (host) {
+    case 'experiments.a8c.com':
+      return 68795
     case 'localhost:3000':
     case 'a8c-abacus-local':
     default:
@@ -20,7 +22,7 @@ const resolveClientId = (host: string) => {
  * @param origin
  */
 const acceptMessagesFrom = (origin: string): boolean => {
-  const accept = /(^https?:\/\/a8c-abacus-local:3000)|localhost/.test(origin)
+  const accept = /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost/.test(origin)
   return accept
 }
 
