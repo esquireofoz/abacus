@@ -37,8 +37,9 @@ const AuthPage = React.memo(function AuthPage() {
                 type: 'bearer',
               },
             },
-            // TODO: Change to correct origin.
-            '*',
+            // We expect that the opener and this window have the same origin, and they should. If
+            // they don't then we don't want to send this sensitive information to it.
+            window.location.origin,
           )
 
           doReplaceWithOAuth = false

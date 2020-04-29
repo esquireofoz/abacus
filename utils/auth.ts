@@ -20,7 +20,7 @@ const resolveClientId = (host: string) => {
  * @param origin
  */
 const acceptMessagesFrom = (origin: string): boolean => {
-  const accept = /(^https:\/\/a8c-abacus-local:3000)|localhost/.test(origin)
+  const accept = /(^https?:\/\/a8c-abacus-local:3000)|localhost/.test(origin)
   return accept
 }
 
