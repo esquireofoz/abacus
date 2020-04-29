@@ -10,10 +10,15 @@
     "url": "https://github.com/Automattic/abacus.git"
   },
   "dependencies": {
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.5",
+    "qc-to_int": "^1.0.1",
+    "querystring": "^0.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "wpcom-oauth-cors": "^1.0.2-beta"
   },
   "@comment devDependencies": {
     "@package babel-loader": "Required by @storybook/react",
@@ -26,6 +31,7 @@
     "@storybook/react": "^5.3.18",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.3",
+    "@types/debug": "^4.1.5",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.1",
     "@types/react": "^16.9.34",
@@ -57,7 +63,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "build": "next build",
     "precommit": "lint-staged",
-    "dev": "next",
+    "dev": "next --hostname a8c-abacus-local",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "npm run lint:ts && npm run lint:css",

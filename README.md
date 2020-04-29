@@ -10,6 +10,14 @@ Run `npm install` to install dependencies, then run one of the following command
 - `npm run build`: Builds the app for production.
 - `npm start`: Runs the built app in production mode.
 
+### Update Host File
+
+Add the following to your system's host file.
+
+```
+127.0.0.1 a8c-abacus-local
+```
+
 ## Scripts
 
 All the scripts for this project are initiated via npm scripts. Please see the `"scripts"` section in `package.json`.
