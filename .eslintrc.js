@@ -46,7 +46,6 @@ module.exports = {
   ],
   plugins: ['@typescript-eslint'],
   rules: {
-    camelcase: ['error', { allow: ['_unused$'] }],
     'comma-dangle': [
       'error',
       {
@@ -66,6 +65,10 @@ module.exports = {
 
     // Off because we are using TypeScript which expects us to declare the props.
     'react/prop-types': 'off',
+
+    // The Experiment API uses snake_case, so we decided to disable enforcing
+    // camelcase.
+    '@typescript-eslint/camelcase': 'off',
 
     '@typescript-eslint/explicit-function-return-type': 'off',
 

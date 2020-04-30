@@ -99,7 +99,6 @@ const openAuthPopup = () => {
  */
 const replaceWithOAuth = () => {
   const authPath = 'https://public-api.wordpress.com/oauth2/authorize'
-  /*eslint-disable camelcase, @typescript-eslint/camelcase*/
   const authQuery = {
     blog: '',
     client_id: resolveClientId(window.location.host),
@@ -108,7 +107,6 @@ const replaceWithOAuth = () => {
     state: '',
     scope: 'global',
   }
-  /*eslint-enable camelcase, @typescript-eslint/camelcase*/
 
   const authUrl = `${authPath}?${qs.stringify(authQuery)}`
   window.location.replace(authUrl)
