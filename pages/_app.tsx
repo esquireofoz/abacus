@@ -21,13 +21,20 @@ const App = React.memo(function App(props: AppProps) {
       const { data, origin, source } = event
 
       if (acceptMessagesFrom(origin)) {
-        if (data.action === 'experiments_api_authorized') {
-          const experimentsApiAuth = data.data
-          saveExperimentsApiAuth(experimentsApiAuth)
-          const opener: WindowOpener = source as WindowOpener
-          if (opener && opener.name === 'auth') {
-            opener.close()
-          }
+        switch (data.action) {
+          case 'experiments_api_authorized':
+            {
+              const experimentsApiAuth = data.data
+              saveExperimentsApiAuth(experimentsApiAuth)
+              const opener: WindowOpener = source as WindowOpener
+              if (opener && opener.name === 'auth') {
+                opener.close()
+              }
+            }
+            break
+          case 'abacus_access_denied':
+            saveExperimentsApiAuth(null)
+            break
         }
       }
     }

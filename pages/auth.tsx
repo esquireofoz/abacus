@@ -49,6 +49,14 @@ const AuthPage = React.memo(function AuthPage() {
           doReplaceWithOAuth = false
         } else if (authInfo.error === 'access_denied') {
           setError('Please log into WordPress.com and authorize Abacus to have access.')
+
+          window.opener.postMessage(
+            { action: 'abacus_access_denied' },
+            // We expect that the opener and this window have the same origin, and they should. If
+            // they don't then we don't want to send this sensitive information to it.
+            window.location.origin,
+          )
+
           doReplaceWithOAuth = false
         }
       }
