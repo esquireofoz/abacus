@@ -11,6 +11,7 @@ const App = React.memo(function App(props: AppProps) {
   const { Component: Route, pageProps: routeProps } = props
 
   if (typeof window !== 'undefined') {
+    // Prompt user for authorization if we don't have auth info.
     const experimentsApiAuth = getExperimentsApiAuth()
     if (!experimentsApiAuth) {
       replaceWithOAuth()

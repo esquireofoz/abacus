@@ -8,7 +8,7 @@ import { replaceWithOAuth, saveExperimentsApiAuth } from '../utils/auth'
 const debug = debugFactory('abacus:pages/auth.tsx')
 
 /**
- * The authorization page. It is expected to be opened in a popup window.
+ * The authorization page.
  */
 const AuthPage = React.memo(function AuthPage() {
   debug('AuthPage#render')
