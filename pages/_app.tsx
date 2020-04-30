@@ -36,11 +36,9 @@ const App = React.memo(function App(props: AppProps) {
   }, [])
 
   return (
-    <>
-      <div className='app'>
-        <Route {...routeProps} />
-      </div>
-    </>
+    <div className='app'>
+      <Route {...routeProps} />
+    </div>
   )
 })
 
