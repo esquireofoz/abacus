@@ -16,22 +16,27 @@ const App = React.memo(function App(props: AppProps) {
   const { Component: Route, pageProps: routeProps } = props
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('message', (event) => {
-        const { data, origin, source } = event
-        debug('App#render#onMessage')
+    function onMessage(event: MessageEvent) {
+      debug('App#render#onMessage')
+      const { data, origin, source } = event
 
-        if (acceptMessagesFrom(origin)) {
-          if (data.action === 'experiments_api_authorized') {
-            const experimentsApiAuth = data.data
-            saveExperimentsApiAuth(experimentsApiAuth)
-            const opener: WindowOpener = source as WindowOpener
-            if (opener && opener.name === 'auth') {
-              opener.close()
-            }
+      if (acceptMessagesFrom(origin)) {
+        if (data.action === 'experiments_api_authorized') {
+          const experimentsApiAuth = data.data
+          saveExperimentsApiAuth(experimentsApiAuth)
+          const opener: WindowOpener = source as WindowOpener
+          if (opener && opener.name === 'auth') {
+            opener.close()
           }
         }
-      })
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('message', onMessage)
+      return () => {
+        window.removeEventListener('message', onMessage)
+      }
     }
   }, [])
 
