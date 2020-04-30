@@ -32,7 +32,7 @@ const AuthPage = React.memo(function AuthPage() {
           const expiresInSeconds = toInt(authInfo.expires_in)
           window.opener.postMessage(
             {
-              action: 'experiments_api_authorized',
+              action: 'abacus_access_authorized',
               data: {
                 accessToken: authInfo.access_token,
                 expiresAt: typeof expiresInSeconds === 'number' ? Date.now() + expiresInSeconds * 1000 : null,

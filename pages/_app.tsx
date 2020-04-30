@@ -22,7 +22,7 @@ const App = React.memo(function App(props: AppProps) {
 
       if (acceptMessagesFrom(origin)) {
         switch (data.action) {
-          case 'experiments_api_authorized':
+          case 'abacus_access_authorized':
             {
               const experimentsApiAuth = data.data
               saveExperimentsApiAuth(experimentsApiAuth)
