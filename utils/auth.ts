@@ -10,7 +10,7 @@ const resolveClientId = (host: string) => {
     case 'experiments.a8c.com':
       return 68795
     case 'localhost:3000':
-    case 'a8c-abacus-local':
+    case 'a8c-abacus-local:3000':
     default:
       return 68797
   }
