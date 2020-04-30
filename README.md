@@ -10,9 +10,9 @@ Run `npm install` to install dependencies, then run one of the following command
 - `npm run build`: Builds the app for production.
 - `npm start`: Runs the built app in production mode.
 
-### Update Host File
+### Update System Host File
 
-Add the following to your system's host file.
+In order for our OAuth authorization to work, it needs to be given a redirect URI that has been declared as acceptable. In order to aid with using the site locally, add the following to your system's host file.
 
 ```
 127.0.0.1 a8c-abacus-local
