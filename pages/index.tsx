@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 
 const debug = debugFactory('abacus:pages/index.tsx')
 
-const IndexPage = React.memo(function IndexPage() {
+const IndexPage = function IndexPage() {
   debug('IndexPage#render')
   return (
     <Layout title='Experiments'>
@@ -15,6 +15,6 @@ const IndexPage = React.memo(function IndexPage() {
       <p>Some change to test pre-commit hooks are running.</p>
     </Layout>
   )
-})
+}
 
 export default IndexPage
