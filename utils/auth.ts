@@ -40,21 +40,19 @@ const EXPIRATION_BUFFER = 12 * 60 * 60 * 1000
  * Returns the saved experiments API auth info if available and has not expired.
  */
 const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
-  const encodedExperimentsApiAuth = localStorage.getItem('experiments_api_auth')
-  let experimentsApiAuth
-  if (encodedExperimentsApiAuth) {
-    try {
-      experimentsApiAuth = JSON.parse(encodedExperimentsApiAuth)
-      if (typeof experimentsApiAuth.expiresAt === 'number') {
-        if (experimentsApiAuth.expiresAt - EXPIRATION_BUFFER < Date.now()) {
-          experimentsApiAuth = null
-        }
-      }
-    } catch (err) {
-      // Ignore
+  try {
+    const experimentsApiAuth = JSON.parse(localStorage.getItem('experiments_api_auth') || 'null')
+    if (
+      experimentsApiAuth &&
+      !experimentsApiAuth.expiresAt &&
+      experimentsApiAuth.expiresAt - EXPIRATION_BUFFER > Date.now()
+    ) {
+      return experimentsApiAuth
     }
+  } catch (err) {
+    console.error(err)
   }
-  return experimentsApiAuth
+  return null
 }
 
 /**
