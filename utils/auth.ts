@@ -22,8 +22,7 @@ const resolveClientId = (host: string) => {
  * @param origin
  */
 const acceptMessagesFrom = (origin: string): boolean => {
-  const accept = /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost/.test(origin)
-  return accept
+  return /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost/.test(origin)
 }
 
 interface ExperimentsApiAuthInfo {
