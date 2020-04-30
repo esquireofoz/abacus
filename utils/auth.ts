@@ -28,8 +28,8 @@ const acceptMessagesFrom = (origin: string): boolean => {
 interface ExperimentsApiAuthInfo {
   accessToken: string
   expiresAt: number | null
-  scope: 'global'
-  type: 'bearer'
+  scope: string
+  type: string
 }
 
 const EXPIRATION_BUFFER = 12 * 60 * 60 * 1000
@@ -60,32 +60,8 @@ const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | nul
     : localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
 }
 
-/**
- * Opens the Abacus authorize page in a popup window.
- */
-const openAuthPopup = () => {
-  // This width and height works well with the WP.com OAuth authorize page.
-  const width = 600
-  const height = 800
-  // Pick a top left such that it is in the center of the window (not necessarily
-  // the screen).
-  const left = Math.max(0, (window.innerWidth - width) / 2) + window.screenX
-  const top = Math.max(0, (window.innerHeight - height) / 2) + window.screenY
-  const popupOpts = [
-    'location=no',
-    'menubar=no',
-    'resizable=yes',
-    'scrollbars=yes',
-    'status=no',
-    'toolbar=no',
-    `left=${left}`,
-    `top=${top}`,
-    `width=${width}`,
-    `height=${height}`,
-  ].join()
-
-  const authUrl = `${window.location.origin}/auth`
-  window.open(authUrl, 'auth', popupOpts)
+const replaceWithAuthPage = () => {
+  window.location.replace(`${window.location.origin}/auth`)
 }
 
 /**
@@ -104,4 +80,4 @@ const replaceWithOAuth = () => {
   window.location.replace(authUrl)
 }
 
-export { acceptMessagesFrom, getExperimentsApiAuth, openAuthPopup, replaceWithOAuth, saveExperimentsApiAuth }
+export { acceptMessagesFrom, getExperimentsApiAuth, replaceWithAuthPage, replaceWithOAuth, saveExperimentsApiAuth }

@@ -3,9 +3,7 @@ import { toInt } from 'qc-to_int'
 import qs from 'querystring'
 import React, { useEffect, useState } from 'react'
 
-import Layout from '../components/Layout'
-
-import { replaceWithOAuth } from '../utils/auth'
+import { replaceWithOAuth, saveExperimentsApiAuth } from '../utils/auth'
 
 const debug = debugFactory('abacus:pages/auth.tsx')
 
@@ -30,32 +28,21 @@ const AuthPage = React.memo(function AuthPage() {
         const authInfo = qs.parse(window.location.hash.substring(1))
         if (authInfo.access_token && authInfo.scope === 'global' && authInfo.token_type === 'bearer') {
           const expiresInSeconds = toInt(authInfo.expires_in)
-          window.opener.postMessage(
-            {
-              action: 'abacus_access_authorized',
-              data: {
-                accessToken: authInfo.access_token,
-                expiresAt: typeof expiresInSeconds === 'number' ? Date.now() + expiresInSeconds * 1000 : null,
-                scope: 'global',
-                siteId: authInfo.site_id,
-                type: 'bearer',
-              },
-            },
-            // We expect that the opener and this window have the same origin, and they should. If
-            // they don't then we don't want to send this sensitive information to it.
-            window.location.origin,
-          )
+          const experimentsApiAuth = {
+            accessToken: authInfo.access_token as string,
+            expiresAt: typeof expiresInSeconds === 'number' ? Date.now() + expiresInSeconds * 1000 : null,
+            scope: 'global',
+            type: 'bearer',
+          }
+          saveExperimentsApiAuth(experimentsApiAuth)
+
+          window.location.assign(window.location.origin)
 
           doReplaceWithOAuth = false
         } else if (authInfo.error === 'access_denied') {
           setError('Please log into WordPress.com and authorize Abacus to have access.')
 
-          window.opener.postMessage(
-            { action: 'abacus_access_denied' },
-            // We expect that the opener and this window have the same origin, and they should. If
-            // they don't then we don't want to send this sensitive information to it.
-            window.location.origin,
-          )
+          saveExperimentsApiAuth(null)
 
           doReplaceWithOAuth = false
         }
@@ -68,7 +55,7 @@ const AuthPage = React.memo(function AuthPage() {
   }, [])
 
   return (
-    <Layout title='Experiments'>
+    <>
       {error ? (
         <>
           <div>{error}</div>
@@ -78,7 +65,7 @@ const AuthPage = React.memo(function AuthPage() {
       ) : (
         <div>TODO: Replace with a loading component.</div>
       )}
-    </Layout>
+    </>
   )
 })
 
