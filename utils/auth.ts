@@ -41,11 +41,7 @@ const EXPIRATION_BUFFER = 12 * 60 * 60 * 1000
 const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
   try {
     const experimentsApiAuth = JSON.parse(localStorage.getItem('experiments_api_auth') || 'null')
-    if (
-      experimentsApiAuth &&
-      !experimentsApiAuth.expiresAt &&
-      experimentsApiAuth.expiresAt - EXPIRATION_BUFFER > Date.now()
-    ) {
+    if (experimentsApiAuth && experimentsApiAuth.expiresAt - EXPIRATION_BUFFER > Date.now()) {
       return experimentsApiAuth
     }
   } catch (err) {
@@ -59,8 +55,10 @@ const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
  *
  * @param {ExperimentsApiAuthInfo} experimentsApiAuth
  */
-const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo) => {
-  localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
+const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | null) => {
+  experimentsApiAuth === null
+    ? localStorage.removeItem('experiments_api_auth')
+    : localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
 }
 
 /**
