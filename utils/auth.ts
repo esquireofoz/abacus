@@ -29,7 +29,6 @@ interface ExperimentsApiAuthInfo {
   accessToken: string
   expiresAt: number | null
   scope: 'global'
-  siteId?: number
   type: 'bearer'
 }
 
@@ -95,11 +94,9 @@ const openAuthPopup = () => {
 const replaceWithOAuth = () => {
   const authPath = 'https://public-api.wordpress.com/oauth2/authorize'
   const authQuery = {
-    blog: '',
     client_id: resolveClientId(window.location.host),
     redirect_uri: `${window.location.origin}/auth`,
     response_type: 'token',
-    state: '',
     scope: 'global',
   }
 
