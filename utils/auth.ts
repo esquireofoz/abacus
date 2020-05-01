@@ -23,15 +23,13 @@ interface ExperimentsApiAuthInfo {
   type: string
 }
 
-const EXPIRATION_BUFFER = 12 * 60 * 60 * 1000
-
 /**
  * Returns the saved experiments API auth info if available and has not expired.
  */
 const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
   try {
     const experimentsApiAuth = JSON.parse(localStorage.getItem('experiments_api_auth') || 'null')
-    if (experimentsApiAuth && experimentsApiAuth.expiresAt - EXPIRATION_BUFFER > Date.now()) {
+    if (experimentsApiAuth && experimentsApiAuth.expiresAt > Date.now()) {
       return experimentsApiAuth
     }
   } catch (err) {
