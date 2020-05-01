@@ -125,7 +125,7 @@ npm run test:e2e:smoke
 
 For debugging, you'll likely want to run with a full visual browser. To do that:
 
-1. Create a `.env` file at the project's root if it does not already exist.
+1. Create a `.env` file at the project's root if it does not already exist. You can copy the `.env.example` file as an initial template.
 2. Add `PUPPETEER_HEADLESS=false`
 
 This will cause the E2E tests to run in a browser that can be visually seen.
