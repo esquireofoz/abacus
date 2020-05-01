@@ -6,14 +6,11 @@ import qs from 'querystring'
  * @param host
  */
 const resolveClientId = (host: string) => {
-  switch (host) {
-    case 'experiments.a8c.com':
-      return 68795
-    case 'localhost:3000':
-    case 'a8c-abacus-local:3000':
-    default:
-      return 68797
+  let clientId = 68797
+  if (host === 'experiments.a8c.com') {
+    clientId = 68795
   }
+  return clientId
 }
 
 /**
@@ -22,7 +19,7 @@ const resolveClientId = (host: string) => {
  * @param origin
  */
 const acceptMessagesFrom = (origin: string): boolean => {
-  return /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost/.test(origin)
+  return /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost(:\d{4,5})?$/.test(origin)
 }
 
 interface ExperimentsApiAuthInfo {
@@ -44,6 +41,7 @@ const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
       return experimentsApiAuth
     }
   } catch (err) {
+    /* istanbul ignore next */
     console.error(err)
   }
   return null
@@ -60,6 +58,9 @@ const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | nul
     : localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
 }
 
+/**
+ * Replaces the current document with the Abacus auth page.
+ */
 const replaceWithAuthPage = () => {
   window.location.replace(`${window.location.origin}/auth`)
 }
