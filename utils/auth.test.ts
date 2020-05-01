@@ -1,4 +1,4 @@
-import { getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth } from './auth'
+import { getAuthClientId, getExperimentsAuthInfo, saveExperimentsAuthInfo } from './auth'
 
 describe('utils/auth.ts module', () => {
   afterEach(() => {
@@ -16,19 +16,19 @@ describe('utils/auth.ts module', () => {
     })
   })
 
-  describe('getExperimentsApiAuth', () => {
-    it('should initially return `null` but can later retrieve value set with `saveExperimentsApiAuth`', () => {
-      expect(getExperimentsApiAuth()).toBe(null)
+  describe('getExperimentsAuthInfo', () => {
+    it('should initially return `null` but can later retrieve value set with `saveExperimentsAuthInfo`', () => {
+      expect(getExperimentsAuthInfo()).toBe(null)
 
       const expiresAt = Date.now() + 24 * 60 * 60 * 1000
-      saveExperimentsApiAuth({
+      saveExperimentsAuthInfo({
         accessToken: 'abunchofcharactersthatlookrandom',
         expiresAt,
         scope: 'global',
         type: 'token',
       })
 
-      expect(getExperimentsApiAuth()).toEqual({
+      expect(getExperimentsAuthInfo()).toEqual({
         accessToken: 'abunchofcharactersthatlookrandom',
         expiresAt,
         scope: 'global',
@@ -37,28 +37,28 @@ describe('utils/auth.ts module', () => {
     })
   })
 
-  describe('saveExperimentsApiAuth', () => {
+  describe('saveExperimentsAuthInfo', () => {
     it('called with null should remove localStorage item', () => {
-      expect(localStorage.getItem('abacus_auth_info')).toBe(null)
+      expect(localStorage.getItem('experiments_auth_info')).toBe(null)
 
       const expiresAt = Date.now() + 24 * 60 * 60 * 1000
-      saveExperimentsApiAuth({
+      saveExperimentsAuthInfo({
         accessToken: 'abunchofcharactersthatlookrandom',
         expiresAt,
         scope: 'global',
         type: 'token',
       })
 
-      expect(getExperimentsApiAuth()).toEqual({
+      expect(getExperimentsAuthInfo()).toEqual({
         accessToken: 'abunchofcharactersthatlookrandom',
         expiresAt,
         scope: 'global',
         type: 'token',
       })
 
-      saveExperimentsApiAuth(null)
+      saveExperimentsAuthInfo(null)
 
-      expect(localStorage.getItem('abacus_auth_info')).toBe(null)
+      expect(localStorage.getItem('experiments_auth_info')).toBe(null)
     })
   })
 })

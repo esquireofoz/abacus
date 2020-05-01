@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import qs from 'querystring'
 import React from 'react'
 
-import { getAuthClientId, getExperimentsApiAuth } from '../utils/auth'
+import { getAuthClientId, getExperimentsAuthInfo } from '../utils/auth'
 
 const debug = debugFactory('abacus:pages/_app.tsx')
 
@@ -13,8 +13,8 @@ const App = React.memo(function App(props: AppProps) {
 
   if (typeof window !== 'undefined') {
     // Prompt user for authorization if we don't have auth info.
-    const experimentsApiAuth = getExperimentsApiAuth()
-    if (!experimentsApiAuth) {
+    const experimentsAuthInfo = getExperimentsAuthInfo()
+    if (!experimentsAuthInfo) {
       const authPath = 'https://public-api.wordpress.com/oauth2/authorize'
       const authQuery = {
         client_id: getAuthClientId(window.location.host),

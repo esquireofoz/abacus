@@ -8,10 +8,10 @@ const getAuthClientId = (host: string) => {
 }
 
 /**
- * Authorization info, as returned from OAuth call. See
+ * Experiments authorization info, as returned from OAuth call. See
  * https://developer.wordpress.com/docs/oauth2/.
  */
-interface ExperimentsApiAuthInfo {
+interface ExperimentsAuthInfo {
   accessToken: string
   expiresAt: number | null
   scope: string
@@ -19,13 +19,13 @@ interface ExperimentsApiAuthInfo {
 }
 
 /**
- * Returns the saved experiments API auth info if available and has not expired.
+ * Returns the saved Experiments authorization info if available and has not expired.
  */
-const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
+const getExperimentsAuthInfo = (): ExperimentsAuthInfo | null => {
   try {
-    const experimentsApiAuth = JSON.parse(localStorage.getItem('abacus_auth_info') || 'null')
-    if (experimentsApiAuth && experimentsApiAuth.expiresAt > Date.now()) {
-      return experimentsApiAuth
+    const experimentsAuthInfo = JSON.parse(localStorage.getItem('experiments_auth_info') || 'null')
+    if (experimentsAuthInfo && experimentsAuthInfo.expiresAt > Date.now()) {
+      return experimentsAuthInfo
     }
   } catch (err) {
     /* istanbul ignore next */
@@ -35,16 +35,16 @@ const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
 }
 
 /**
- * Saves the experiments API auth info for later retrieval.
+ * Saves the Experiments authorization info for later retrieval.
  *
- * @param {ExperimentsApiAuthInfo} experimentsApiAuth
+ * @param {ExperimentsAuthInfo} experimentsAuthInfo
  */
-const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | null) => {
-  if (experimentsApiAuth === null) {
-    localStorage.removeItem('abacus_auth_info')
+const saveExperimentsAuthInfo = (experimentsAuthInfo: ExperimentsAuthInfo | null) => {
+  if (experimentsAuthInfo === null) {
+    localStorage.removeItem('experiments_auth_info')
   } else {
-    localStorage.setItem('abacus_auth_info', JSON.stringify(experimentsApiAuth))
+    localStorage.setItem('experiments_auth_info', JSON.stringify(experimentsAuthInfo))
   }
 }
 
-export { getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth }
+export { getAuthClientId, getExperimentsAuthInfo, saveExperimentsAuthInfo }

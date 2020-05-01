@@ -4,7 +4,7 @@ export {}
 
 jest.setTimeout(60000)
 
-describe('Abacus', () => {
+describe('Experiments', () => {
   beforeAll(async () => {
     await page.goto('http://a8c-abacus-local:3000')
   })

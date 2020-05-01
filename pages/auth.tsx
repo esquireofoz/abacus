@@ -3,7 +3,7 @@ import { toInt } from 'qc-to_int'
 import qs from 'querystring'
 import React, { useEffect, useState } from 'react'
 
-import { saveExperimentsApiAuth } from '../utils/auth'
+import { saveExperimentsAuthInfo } from '../utils/auth'
 
 const debug = debugFactory('abacus:pages/auth.tsx')
 
@@ -29,19 +29,19 @@ const AuthPage = function AuthPage() {
         const authInfo = qs.parse(window.location.hash.substring(1))
         if (authInfo.access_token && authInfo.scope === 'global' && authInfo.token_type === 'bearer') {
           const expiresInSeconds = toInt(authInfo.expires_in)
-          const experimentsApiAuth = {
+          const experimentsAuthInfo = {
             accessToken: authInfo.access_token as string,
             expiresAt: typeof expiresInSeconds === 'number' ? Date.now() + expiresInSeconds * 1000 : null,
             scope: 'global',
             type: 'bearer',
           }
-          saveExperimentsApiAuth(experimentsApiAuth)
+          saveExperimentsAuthInfo(experimentsAuthInfo)
 
           window.location.assign(window.location.origin)
         } else if (authInfo.error === 'access_denied') {
-          setError('Please log into WordPress.com and authorize Abacus to have access.')
+          setError('Please log into WordPress.com and authorize Abacus - Testing to have access.')
 
-          saveExperimentsApiAuth(null)
+          saveExperimentsAuthInfo(null)
         }
       }
     }
