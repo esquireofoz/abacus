@@ -131,3 +131,9 @@ For debugging, you'll likely want to run with a full visual browser. To do that:
 This will cause the E2E tests to run in a browser that can be visually seen.
 
 See https://developers.google.com/web/tools/puppeteer/debugging for more debugging tips.
+
+## Testing Auth Flow
+
+Besides the automated unit tests and E2E tests, there is sometimes a need for manual intervention due to factors not acceptable in during automation, e.g., waiting for an access token to naturally expire to ensure the user is re-prompted to authenticate and authorize.
+
+Once a user is authenticated and they authorize Abacus to have access, we save the authorization info in local storage under the key `abacus_auth_info`. To simulate using Abacus on a new browser or the access token expiring, you can remove this item from local storage using the Chrome devtools > Application tab.

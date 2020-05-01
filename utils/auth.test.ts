@@ -39,7 +39,7 @@ describe('utils/auth.ts module', () => {
 
   describe('saveExperimentsApiAuth', () => {
     it('called with null should remove localStorage item', () => {
-      expect(localStorage.getItem('experiments_api_auth')).toBe(null)
+      expect(localStorage.getItem('abacus_auth_info')).toBe(null)
 
       const expiresAt = Date.now() + 24 * 60 * 60 * 1000
       saveExperimentsApiAuth({
@@ -58,7 +58,7 @@ describe('utils/auth.ts module', () => {
 
       saveExperimentsApiAuth(null)
 
-      expect(localStorage.getItem('experiments_api_auth')).toBe(null)
+      expect(localStorage.getItem('abacus_auth_info')).toBe(null)
     })
   })
 })

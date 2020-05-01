@@ -23,7 +23,7 @@ interface ExperimentsApiAuthInfo {
  */
 const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
   try {
-    const experimentsApiAuth = JSON.parse(localStorage.getItem('experiments_api_auth') || 'null')
+    const experimentsApiAuth = JSON.parse(localStorage.getItem('abacus_auth_info') || 'null')
     if (experimentsApiAuth && experimentsApiAuth.expiresAt > Date.now()) {
       return experimentsApiAuth
     }
@@ -41,9 +41,9 @@ const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
  */
 const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | null) => {
   if (experimentsApiAuth === null) {
-    localStorage.removeItem('experiments_api_auth')
+    localStorage.removeItem('abacus_auth_info')
   } else {
-    localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
+    localStorage.setItem('abacus_auth_info', JSON.stringify(experimentsApiAuth))
   }
 }
 
