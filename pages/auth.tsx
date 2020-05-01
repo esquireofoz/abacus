@@ -10,7 +10,7 @@ const debug = debugFactory('abacus:pages/auth.tsx')
 /**
  * The authorization page.
  */
-const AuthPage = React.memo(function AuthPage() {
+const AuthPage = function AuthPage() {
   debug('AuthPage#render')
   const [error, setError] = useState<null | string>(null)
   useEffect(() => {
@@ -67,6 +67,6 @@ const AuthPage = React.memo(function AuthPage() {
       )}
     </>
   )
-})
+}
 
 export default AuthPage
