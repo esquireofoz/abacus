@@ -40,9 +40,11 @@ const getExperimentsApiAuth = (): ExperimentsApiAuthInfo | null => {
  * @param {ExperimentsApiAuthInfo} experimentsApiAuth
  */
 const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | null) => {
-  experimentsApiAuth === null
-    ? localStorage.removeItem('experiments_api_auth')
-    : localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
+  if (experimentsApiAuth === null) {
+    localStorage.removeItem('experiments_api_auth')
+  } else {
+    localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
+  }
 }
 
 export { getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth }
