@@ -2,7 +2,7 @@
 // config. Note: This can be removed once something is being imported.
 export {}
 
-jest.setTimeout(100000)
+jest.setTimeout(60000)
 
 describe('Abacus', () => {
   beforeAll(async () => {
