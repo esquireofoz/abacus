@@ -8,15 +8,6 @@ const getAuthClientId = (host: string) => {
 }
 
 /**
- * Determines whether to accept messages from the specified origin.
- *
- * @param origin
- */
-const acceptMessagesFrom = (origin: string): boolean => {
-  return /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost(:\d{4,5})?$/.test(origin)
-}
-
-/**
  * Authorization info, as returned from OAuth call. See
  * https://developer.wordpress.com/docs/oauth2/.
  */
@@ -54,4 +45,4 @@ const saveExperimentsApiAuth = (experimentsApiAuth: ExperimentsApiAuthInfo | nul
     : localStorage.setItem('experiments_api_auth', JSON.stringify(experimentsApiAuth))
 }
 
-export { acceptMessagesFrom, getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth }
+export { getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth }

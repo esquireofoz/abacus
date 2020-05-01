@@ -1,30 +1,8 @@
-import { acceptMessagesFrom, getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth } from './auth'
+import { getAuthClientId, getExperimentsApiAuth, saveExperimentsApiAuth } from './auth'
 
 describe('utils/auth.ts module', () => {
   afterEach(() => {
     window.localStorage.clear()
-  })
-
-  describe('acceptMessagesFrom', () => {
-    it('should accept a8c-abacus-local:3000, https://experiments.a8c.com, and localhost', () => {
-      expect(acceptMessagesFrom('http://a8c-abacus-local:3000')).toBe(true)
-      expect(acceptMessagesFrom('https://a8c-abacus-local:3000')).toBe(true)
-      expect(acceptMessagesFrom('https://experiments.a8c.com')).toBe(true)
-      expect(acceptMessagesFrom('http://localhost')).toBe(true)
-      expect(acceptMessagesFrom('http://localhost:3000')).toBe(true)
-      expect(acceptMessagesFrom('http://localhost:8888')).toBe(true)
-      expect(acceptMessagesFrom('https://localhost')).toBe(true)
-      expect(acceptMessagesFrom('https://localhost:3000')).toBe(true)
-      expect(acceptMessagesFrom('https://localhost:8888')).toBe(true)
-    })
-
-    it('should accept not a8c-abacus-local:8888, http://experiments.a8c.com, and many others', () => {
-      expect(acceptMessagesFrom('http://a8c-abacus-local:8888')).toBe(false)
-      expect(acceptMessagesFrom('https://a8c-abacus-local:8888')).toBe(false)
-      expect(acceptMessagesFrom('http://experiments.a8c.com')).toBe(false)
-      expect(acceptMessagesFrom('https://google.com/')).toBe(false)
-      expect(acceptMessagesFrom('http://localhost.com')).toBe(false)
-    })
   })
 
   describe('getAuthClientId', () => {
