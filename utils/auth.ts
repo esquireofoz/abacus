@@ -16,6 +16,10 @@ const acceptMessagesFrom = (origin: string): boolean => {
   return /(^https?:\/\/a8c-abacus-local:3000)|(^https:\/\/experiments.a8c.com)|localhost(:\d{4,5})?$/.test(origin)
 }
 
+/**
+ * Authorization info, as returned from OAuth call. See
+ * https://developer.wordpress.com/docs/oauth2/.
+ */
 interface ExperimentsApiAuthInfo {
   accessToken: string
   expiresAt: number | null
