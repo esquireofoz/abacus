@@ -2,12 +2,17 @@
 // config. Note: This can be removed once something is being imported.
 export {}
 
+jest.setTimeout(100000)
+
 describe('Abacus', () => {
   beforeAll(async () => {
-    await page.goto('http://localhost:3000')
+    await page.goto('http://a8c-abacus-local:3000')
   })
 
-  it('should display "Experiments" text on page', async () => {
-    await expect(page).toMatch('Experiments')
+  it('should display "Abacus - Testing" text on page from WordPress.com.', async () => {
+    // This is because we expect that the user has not authenticated yet and they
+    // should be redirected to the WP.com log-in page.
+    expect(page.url()).toMatch(/^https:\/\/wordpress.com\/log-in/)
+    await expect(page).toMatch('Abacus - Testing')
   })
 })

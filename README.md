@@ -122,3 +122,12 @@ npm run test:e2e
 # Run just the E2E smoke tests (intended to be used in development for quick iterations)
 npm run test:e2e:smoke
 ```
+
+For debugging, you'll likely want to run with a full visual browser. To do that:
+
+1. Create a `.env` file at the project's root if it does not already exist.
+2. Add `PUPPETEER_HEADLESS=false`
+
+This will cause the E2E tests to run in a browser that can be visually seen.
+
+See https://developers.google.com/web/tools/puppeteer/debugging for more debugging tips.

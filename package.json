@@ -15,8 +15,10 @@
   },
   "dependencies": {
     "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.5",
+    "qc-to_bool": "^1.1.2",
     "qc-to_int": "^1.0.1",
     "querystring": "^0.2.0",
     "react": "^16.13.1",
