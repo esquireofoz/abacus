@@ -12,7 +12,7 @@ Run `npm install` to install dependencies, then run one of the following command
 
 ### Update System Host File
 
-In order for our OAuth authorization to work, it needs to be given a redirect URI that has been declared as acceptable. In order to aid with using the site locally, add the following to your system's host file.
+In order for our OAuth authorization to work, it needs to be given a redirect URI that has been declared as acceptable. In order to aid with using the site locally, add the following DNS mapping to your system's host file.
 
 ```
 127.0.0.1 a8c-abacus-local
