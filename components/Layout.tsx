@@ -1,12 +1,13 @@
 import Link from 'next/link'
 import Head from 'next/head'
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 type Props = {
+  children?: ReactNode
   title: string
 }
 
-const Layout: React.FunctionComponent<Props> = ({ children, title }) => (
+const Layout = ({ children, title }: Props) => (
   <div>
     <Head>
       <title>{title} | Abacus</title>
