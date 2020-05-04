@@ -116,6 +116,12 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'error',
   },
   settings: {
+    'import/resolver': {
+      alias: {
+        map: [['@', './']],
+        extensions: ['.ts', '.json', '.tsx'],
+      },
+    },
     react: {
       version: 'detect',
     },

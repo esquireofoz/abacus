@@ -1,7 +1,7 @@
 import debugFactory from 'debug'
 import React from 'react'
 
-import Layout from '../components/Layout'
+import Layout from '@/components/Layout'
 
 const debug = debugFactory('abacus:pages/index.tsx')
 

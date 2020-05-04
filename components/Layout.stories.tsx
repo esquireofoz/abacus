@@ -1,4 +1,4 @@
-import '../styles/main.scss'
+import '@/styles/main.scss'
 
 import React from 'react'
 import { withRouter } from 'next/router'

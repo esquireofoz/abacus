@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import qs from 'querystring'
 import React from 'react'
 
-import { getAuthClientId, getExperimentsAuthInfo } from '../utils/auth'
+import { getAuthClientId, getExperimentsAuthInfo } from '@/utils/auth'
 
 const debug = debugFactory('abacus:pages/_app.tsx')
 
