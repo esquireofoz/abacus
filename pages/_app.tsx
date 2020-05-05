@@ -3,6 +3,10 @@ import { AppProps } from 'next/app'
 import qs from 'querystring'
 import React from 'react'
 
+import RenderErrorBoundary from '@/components/RenderErrorBoundary'
+
+import { onAppRenderError } from '@/event-handlers/index'
+
 import { getAuthClientId, getExperimentsAuthInfo } from '@/utils/auth'
 
 const debug = debugFactory('abacus:pages/_app.tsx')
@@ -29,9 +33,22 @@ const App = React.memo(function App(props: AppProps) {
   }
 
   return (
-    <div className='app'>
-      <Route {...routeProps} />
-    </div>
+    <RenderErrorBoundary onError={onAppRenderError}>
+      {({ renderError }) => (
+        <>
+          {renderError ? (
+            <>
+              <p>An error occurred. If error persists, please contact the Experiments Platform team.</p>
+              <button onClick={renderError.clear}>Try Again</button>
+            </>
+          ) : (
+            <div className='app'>
+              <Route {...routeProps} />
+            </div>
+          )}
+        </>
+      )}
+    </RenderErrorBoundary>
   )
 })
 
