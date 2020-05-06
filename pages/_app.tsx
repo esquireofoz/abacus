@@ -4,8 +4,9 @@ import qs from 'querystring'
 import React from 'react'
 
 import RenderErrorBoundary from '@/components/RenderErrorBoundary'
+import RenderErrorView from '@/components/RenderErrorView'
 
-import { onAppRenderError } from '@/event-handlers/index'
+import { onRenderError } from '@/event-handlers/index'
 
 import { getAuthClientId, getExperimentsAuthInfo } from '@/utils/auth'
 
@@ -33,14 +34,11 @@ const App = React.memo(function App(props: AppProps) {
   }
 
   return (
-    <RenderErrorBoundary onError={onAppRenderError}>
+    <RenderErrorBoundary onError={onRenderError}>
       {({ renderError }) => (
         <>
           {renderError ? (
-            <>
-              <p>An error occurred. If error persists, please contact the Experiments Platform team.</p>
-              <button onClick={renderError.clear}>Try Again</button>
-            </>
+            <RenderErrorView renderError={renderError} />
           ) : (
             <div className='app'>
               <Route {...routeProps} />

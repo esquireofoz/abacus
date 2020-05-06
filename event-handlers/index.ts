@@ -1,8 +1,8 @@
 import type { RenderError } from '@/components/RenderErrorBoundary'
 
-function onAppRenderError(renderError: RenderError) {
+function onRenderError(renderError: RenderError) {
   const { error, info } = renderError
-  console.error('App Render Error:\n\n', error, info)
+  console.error('Render Error:\n\n', error, info)
 }
 
-export { onAppRenderError }
+export { onRenderError }

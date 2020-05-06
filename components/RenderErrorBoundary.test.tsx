@@ -1,17 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
 import React from 'react'
 
+import BadComponent from './BadComponent'
 import RenderErrorBoundary from './RenderErrorBoundary'
-
-const obj = {}
-
-function BadComponent() {
-  // Need a component that will fail when React attempts to render but also need
-  // something that TypeScript will compile. The type assertion allows TS to
-  // compile successfully but because we essentially lied to TS, it will fail as
-  // runtime.
-  return <>{(obj as { nonExistent: { boom: 'shaka laka' } }).nonExistent.boom}</>
-}
 
 test('renders error boundary with declared render prop when render prop does not error', () => {
   const { container } = render(<RenderErrorBoundary>{() => <>A child.</>}</RenderErrorBoundary>)
