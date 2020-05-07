@@ -1,7 +1,8 @@
 import { render } from '@testing-library/react'
 import React from 'react'
 
-import BadComponent from './BadComponent'
+import BadComponent from '@/helpers/BadComponent'
+
 import Layout from './Layout'
 
 test('renders layout with declared title and children', () => {

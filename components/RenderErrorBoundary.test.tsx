@@ -1,7 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
 import React from 'react'
 
-import BadComponent from './BadComponent'
+import BadComponent from '@/helpers/BadComponent'
+
 import RenderErrorBoundary from './RenderErrorBoundary'
 
 test('renders error boundary with declared render prop when render prop does not error', () => {
