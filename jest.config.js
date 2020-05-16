@@ -13,6 +13,7 @@ module.exports = {
     // transform to transform JSX into js rather than leaving it as JSX which the
     // next build requires.
     'ts-jest': {
+      babelConfig: true,
       tsConfig: '<rootDir>/tsconfig.jest.json',
     },
   },
