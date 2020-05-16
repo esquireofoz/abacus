@@ -7,7 +7,7 @@ const STATUSES = Object.values(Status)
 
 describe('ExperimentsApi.ts module', () => {
   describe('findAll', () => {
-    it('should return a set of segments with the expected experiment shape', async () => {
+    it('should return a set of experiments with the expected experiment shape', async () => {
       const experiments = await ExperimentsApi.findAll()
       expect(experiments).toBeDefined()
       expect(Array.isArray(experiments)).toBe(true)
