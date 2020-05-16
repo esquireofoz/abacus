@@ -40,6 +40,9 @@ jobs:
                 name: Unit Testing
                 command: npm run test:unit -- --ci --coverage
             - run:
+                name: Integration Testing
+                command: npm run test:integration -- --ci
+            - run:
                 name: End-to-End Testing
                 command: npm run test:e2e -- --ci
 
