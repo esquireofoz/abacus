@@ -20,17 +20,20 @@ function resolveApiUrlRoot() {
  */
 async function findAll(): Promise<ExperimentBare[]> {
   const apiUrlRoot = resolveApiUrlRoot()
+  const isProduction = apiUrlRoot === PRODUCTION_API_URL_ROOT
 
-  const accessToken = getExperimentsAuthInfo()?.accessToken
-  if (!accessToken) {
-    throw new UnauthorizedError()
+  let accessToken
+  if (isProduction) {
+    accessToken = getExperimentsAuthInfo()?.accessToken
+    if (!accessToken) {
+      throw new UnauthorizedError()
+    }
   }
 
   const fetchUrl = `${apiUrlRoot}/experiments`
   return fetch(fetchUrl, {
     method: 'GET',
-    headers:
-      apiUrlRoot === PRODUCTION_API_URL_ROOT ? new Headers({ Authorization: `Bearer ${accessToken}` }) : undefined,
+    headers: isProduction ? new Headers({ Authorization: `Bearer ${accessToken}` }) : undefined,
   })
     .then((response) => response.json())
     .then((result) => result.experiments.map((apiData: ApiData) => new ExperimentBare(apiData)))
