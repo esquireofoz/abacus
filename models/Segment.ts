@@ -1,8 +1,10 @@
+import { ApiData } from '@/api/ApiData'
+
 /**
  * A segment of users, e.g., grouped by geolocation. Used to constrain an
  * experiment to one or more segments.
  */
-export interface Segment {
+export class Segment {
   /**
    * Globally-unique segment ID.
    */
@@ -16,10 +18,16 @@ export interface Segment {
   /**
    * Type of segment.
    */
-  type: SegmentTypeEnum
+  type: SegmentType
+
+  constructor(apiData: ApiData) {
+    this.segmentId = apiData.segment_id
+    this.name = apiData.name
+    this.type = apiData.type as SegmentType
+  }
 }
 
-export enum SegmentTypeEnum {
+export enum SegmentType {
   Country = 'country',
   Locale = 'locale',
 }
