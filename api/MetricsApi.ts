@@ -1,4 +1,4 @@
-import { ExperimentBare } from '@/models/index'
+import { MetricBare } from '@/models/index'
 import { getExperimentsAuthInfo } from '@/utils/auth'
 
 import { ApiData } from './ApiData'
@@ -6,13 +6,13 @@ import UnauthorizedError from './UnauthorizedError'
 import { resolveApiUrlRoot, PRODUCTION_API_URL_ROOT } from './utils'
 
 /**
- * Finds all the available experiments.
+ * Finds all the available metrics.
  *
  * Note: Be sure to handle any errors that may be thrown.
  *
  * @throws UnauthorizedError
  */
-async function findAll(): Promise<ExperimentBare[]> {
+async function findAll(): Promise<MetricBare[]> {
   const apiUrlRoot = resolveApiUrlRoot()
   const isProduction = apiUrlRoot === PRODUCTION_API_URL_ROOT
 
@@ -24,17 +24,17 @@ async function findAll(): Promise<ExperimentBare[]> {
     }
   }
 
-  const fetchUrl = `${apiUrlRoot}/experiments`
+  const fetchUrl = `${apiUrlRoot}/metrics`
   return fetch(fetchUrl, {
     method: 'GET',
     headers: isProduction ? new Headers({ Authorization: `Bearer ${accessToken}` }) : undefined,
   })
     .then((response) => response.json())
-    .then((result) => result.experiments.map((apiData: ApiData) => new ExperimentBare(apiData)))
+    .then((result) => result.metrics.map((apiData: ApiData) => new MetricBare(apiData)))
 }
 
-const ExperimentsApi = {
+const MetricsApi = {
   findAll,
 }
 
-export default ExperimentsApi
+export default MetricsApi
