@@ -2,9 +2,9 @@ import { MetricFull } from './MetricFull'
 
 describe('models/MetricFull.ts module', () => {
   describe('MetricFull', () => {
-    describe('constructor', () => {
-      it('called with valid API data should create a new `MetricFull` instance', () => {
-        const metricFullWithEventParams = new MetricFull({
+    describe('constructor called with apiData', () => {
+      it('with non-null eventParams should create a valid instance', () => {
+        const metricFull = new MetricFull({
           metric_id: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -19,7 +19,7 @@ describe('models/MetricFull.ts module', () => {
           ],
           revenue_params: null,
         })
-        expect(metricFullWithEventParams).toEqual({
+        expect(metricFull).toEqual({
           metricId: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -34,8 +34,10 @@ describe('models/MetricFull.ts module', () => {
           ],
           revenueParams: null,
         })
+      })
 
-        const metricFullWithRevenueParams = new MetricFull({
+      it('with non-null revenueParams and empty arrays should create a valid instance', () => {
+        const metricFull = new MetricFull({
           metric_id: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -43,11 +45,11 @@ describe('models/MetricFull.ts module', () => {
           event_params: null,
           revenue_params: {
             refund_days: 30,
-            product_slugs: null,
-            transaction_types: null,
+            product_slugs: [],
+            transaction_types: [],
           },
         })
-        expect(metricFullWithRevenueParams).toEqual({
+        expect(metricFull).toEqual({
           metricId: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -55,37 +57,14 @@ describe('models/MetricFull.ts module', () => {
           eventParams: null,
           revenueParams: {
             refundDays: 30,
-            productSlugs: null,
-            transactionTypes: null,
+            productSlugs: [],
+            transactionTypes: [],
           },
         })
+      })
 
-        const metricFullWithoutRevenueRefundDays = new MetricFull({
-          metric_id: 123,
-          name: 'Example Metric',
-          description: 'An example metric.',
-          higher_is_better: true,
-          event_params: null,
-          revenue_params: {
-            refund_days: null,
-            product_slugs: null,
-            transaction_types: null,
-          },
-        })
-        expect(metricFullWithoutRevenueRefundDays).toEqual({
-          metricId: 123,
-          name: 'Example Metric',
-          description: 'An example metric.',
-          higherIsBetter: true,
-          eventParams: null,
-          revenueParams: {
-            refundDays: null,
-            productSlugs: null,
-            transactionTypes: null,
-          },
-        })
-
-        const metricFullWithRevenueProductSlugs = new MetricFull({
+      it('with non-null revenueParams and non-empty product_slugs should create a valid instance', () => {
+        const metricFull = new MetricFull({
           metric_id: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -94,10 +73,10 @@ describe('models/MetricFull.ts module', () => {
           revenue_params: {
             refund_days: 30,
             product_slugs: ['foo', 'bar'],
-            transaction_types: null,
+            transaction_types: [],
           },
         })
-        expect(metricFullWithRevenueProductSlugs).toEqual({
+        expect(metricFull).toEqual({
           metricId: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -106,11 +85,13 @@ describe('models/MetricFull.ts module', () => {
           revenueParams: {
             refundDays: 30,
             productSlugs: ['foo', 'bar'],
-            transactionTypes: null,
+            transactionTypes: [],
           },
         })
+      })
 
-        const metricFullWithRevenueTransactionTypes = new MetricFull({
+      it('with non-null revenueParams and non-empty transaction_types should create a valid instance', () => {
+        const metricFull = new MetricFull({
           metric_id: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -118,11 +99,11 @@ describe('models/MetricFull.ts module', () => {
           event_params: null,
           revenue_params: {
             refund_days: 30,
-            product_slugs: null,
+            product_slugs: [],
             transaction_types: ['new purchase', 'start trial'],
           },
         })
-        expect(metricFullWithRevenueTransactionTypes).toEqual({
+        expect(metricFull).toEqual({
           metricId: 123,
           name: 'Example Metric',
           description: 'An example metric.',
@@ -130,7 +111,34 @@ describe('models/MetricFull.ts module', () => {
           eventParams: null,
           revenueParams: {
             refundDays: 30,
-            productSlugs: null,
+            productSlugs: [],
+            transactionTypes: ['new purchase', 'start trial'],
+          },
+        })
+      })
+
+      it('with non-null revenueParams and non-empty arrays should create a valid instance', () => {
+        const metricFull = new MetricFull({
+          metric_id: 123,
+          name: 'Example Metric',
+          description: 'An example metric.',
+          higher_is_better: true,
+          event_params: null,
+          revenue_params: {
+            refund_days: 30,
+            product_slugs: ['foo', 'bar'],
+            transaction_types: ['new purchase', 'start trial'],
+          },
+        })
+        expect(metricFull).toEqual({
+          metricId: 123,
+          name: 'Example Metric',
+          description: 'An example metric.',
+          higherIsBetter: true,
+          eventParams: null,
+          revenueParams: {
+            refundDays: 30,
+            productSlugs: ['foo', 'bar'],
             transactionTypes: ['new purchase', 'start trial'],
           },
         })

@@ -14,20 +14,20 @@ import { resolveApiUrlRoot, PRODUCTION_API_URL_ROOT } from './utils'
  */
 async function findAll(): Promise<ExperimentBare[]> {
   const apiUrlRoot = resolveApiUrlRoot()
-  const isProduction = apiUrlRoot === PRODUCTION_API_URL_ROOT
 
-  let accessToken
-  if (isProduction) {
-    accessToken = getExperimentsAuthInfo()?.accessToken
+  let headers
+  if (apiUrlRoot === PRODUCTION_API_URL_ROOT) {
+    const accessToken = getExperimentsAuthInfo()?.accessToken
     if (!accessToken) {
       throw new UnauthorizedError()
     }
+    headers = new Headers({ Authorization: `Bearer ${accessToken}` })
   }
 
   const fetchUrl = `${apiUrlRoot}/experiments`
   return fetch(fetchUrl, {
     method: 'GET',
-    headers: isProduction ? new Headers({ Authorization: `Bearer ${accessToken}` }) : undefined,
+    headers: headers,
   })
     .then((response) => response.json())
     .then((result) => result.experiments.map((apiData: ApiData) => new ExperimentBare(apiData)))
