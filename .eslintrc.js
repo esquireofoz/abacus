@@ -26,8 +26,6 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#recommended-configs.
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
 
-    'plugin:react/recommended',
-
     // Disables react-specific linting rules that conflict with prettier.
     'prettier/react',
 
@@ -42,9 +40,19 @@ module.exports = {
     // `--fix` option.
     'plugin:prettier/recommended',
 
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+
+    'plugin:jsx-a11y/recommended',
+
+    'plugin:promise/recommended',
+
     'plugin:react/recommended',
+
+    'plugin:react-hooks/recommended',
   ],
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'jsx-a11y', 'promise', 'react-hooks'],
   rules: {
     // Off because favoring @typescript-eslint/naming-convention instead.
     camelcase: 'off',
@@ -66,6 +74,29 @@ module.exports = {
     'no-unused-vars': 'off',
 
     'padded-blocks': 'off',
+
+    // Allows to use an `a` element without an `href` attribute inside a `Link`
+    // component which in our case is a Next.js Link component.
+    // See https://github.com/evcohen/eslint-plugin-jsx-a11y/issues/402#issuecomment-368305051.
+    'jsx-a11y/anchor-is-valid': [
+      'error',
+      {
+        aspects: ['invalidHref', 'preferButton'],
+        components: ['Link'],
+        specialLink: ['hrefLeft', 'hrefRight'],
+      },
+    ],
+
+    'react/jsx-child-element-spacing': 'warn',
+    'react/jsx-closing-bracket-location': 'error',
+    'react/jsx-closing-tag-location': 'error',
+    'react/jsx-curly-newline': 'error',
+    'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
+    'react/jsx-equals-spacing': 'error',
+    'react/jsx-indent': ['error', 2],
+    'react/jsx-indent-props': ['error', 2],
+    'react/jsx-tag-spacing': 'error',
+    'react/no-unsafe': ['error', { checkAliases: true }],
 
     // Off because we are using TypeScript which expects us to declare the props.
     'react/prop-types': 'off',
