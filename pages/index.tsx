@@ -26,12 +26,11 @@ const IndexPage = function IndexPage() {
   return (
     <Layout title='Experiments'>
       <Container>
-        <img src='/img/logo.png' width='100' />
+        <img alt='logo' src='/img/logo.png' width='100' />
         <h1>Experiments</h1>
         {error && <ErrorsBox errors={[error]} />}
-        {experiments && (
-          <>{experiments.length === 0 ? <p>No experiments yet.</p> : <ExperimentsTable experiments={experiments} />}</>
-        )}
+        {experiments &&
+          (experiments.length === 0 ? <p>No experiments yet.</p> : <ExperimentsTable experiments={experiments} />)}
       </Container>
     </Layout>
   )
