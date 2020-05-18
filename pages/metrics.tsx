@@ -26,7 +26,7 @@ const MetricsPage = function MetricsPage() {
   return (
     <Layout title='Metrics'>
       <Container>
-        <img src='/img/logo.png' width='100' />
+        <img alt='logo' src='/img/logo.png' width='100' />
         <h1>Metrics</h1>
         {error && <ErrorsBox errors={[error]} />}
         {metrics && <>{metrics.length === 0 ? <p>No metrics yet.</p> : <MetricsTable metrics={metrics} />}</>}
