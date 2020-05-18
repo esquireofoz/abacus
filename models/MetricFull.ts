@@ -24,25 +24,24 @@ export class MetricFull extends MetricBare {
   constructor(apiData: ApiData) {
     super(apiData)
     this.higherIsBetter = apiData.higher_is_better
-    this.eventParams = Array.isArray(apiData.event_params)
-      ? apiData.event_params.map((eventParam: ApiData) => ({
-          event: eventParam.event,
-          props: eventParam.props,
-        }))
-      : null
-    this.revenueParams = apiData.revenue_params
-      ? {
-          refundDays: apiData.revenue_params.refund_days,
-          productSlugs: Array.isArray(apiData.revenue_params.product_slugs)
-            ? apiData.revenue_params.product_slugs.slice()
-            : null,
-          transactionTypes: Array.isArray(apiData.revenue_params.transaction_types)
-            ? apiData.revenue_params.transaction_types.map(
-                (transactionType: string) => transactionType as MetricRevenueParamsTransactionTypesEnum,
-              )
-            : null,
-        }
-      : null
-    apiData.revenue_params
+    if (apiData.event_params) {
+      this.eventParams = apiData.event_params.map((eventParam: ApiData) => ({
+        event: eventParam.event,
+        props: eventParam.props,
+      }))
+    } else {
+      this.eventParams = null
+    }
+    if (apiData.revenue_params) {
+      this.revenueParams = {
+        refundDays: apiData.revenue_params.refund_days,
+        productSlugs: apiData.revenue_params.product_slugs,
+        transactionTypes: apiData.revenue_params.transaction_types.map(
+          (transactionType: string) => transactionType as MetricRevenueParamsTransactionTypesEnum,
+        ),
+      }
+    } else {
+      this.revenueParams = null
+    }
   }
 }
