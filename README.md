@@ -152,3 +152,5 @@ Format checks, linting, and testing are all forms of verification. As a convenie
 ```sh
 npm run verify
 ```
+
+### Testing Builds
